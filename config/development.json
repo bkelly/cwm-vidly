@@ -1,0 +1,7 @@
+{
+    "name": "Vidly - DEVELOPMENT",
+    "jwtPrivateKey": "vidly_jwtPrivateKey",
+    "mail": {
+        "host": "dev-mail-server"
+    }
+}

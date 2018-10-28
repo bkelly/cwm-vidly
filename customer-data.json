@@ -1,0 +1,5 @@
+[
+  {"name":"Fred Bloggs", "phone": "12345678", "isGold": "false"},
+  {"name":"Joan Jett", "phone": "87654321", "isGold": "false"},
+  {"name":"Hiro Protagonist", "phone": "00000000", "isGold": "true"}
+]
