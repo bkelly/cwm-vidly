@@ -33,10 +33,12 @@ describe('/api/genres', () => {
         });
 
         it('should return a genre if genreId matches', async () => {
-            const req = await Genre.collection.insertOne( { name: 'genre 1'} );
-            const res = await request(server).get('/api/genres/' + req.insertedId);
+            const genre = new Genre({ name: 'genre 1' });
+            await genre.save();
+            const res = await request(server).get('/api/genres/' + genre._id);
+
             expect(res.status).toBe(200);
-            expect(res.body).toHaveProperty('name', 'genre 1');
+            expect(res.body).toHaveProperty('name', genre.name);
         });
 
     });
