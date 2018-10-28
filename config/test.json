@@ -1,6 +1,6 @@
 {
     "name": "Vidly - TEST",
-    "database": "mongodb://localhost/vidly",
+    "database": "mongodb://localhost/vidly_tests",
     "jwtPrivateKey": "1234"
 
 }

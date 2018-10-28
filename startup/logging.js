@@ -1,5 +1,5 @@
 const winston = require('winston');
-require('winston-mongodb');
+//require('winston-mongodb');
 require('express-async-errors');
 //const debugStartup = require('debug')('app:startup');
 //const debugDB = require('debug')('app:db');
@@ -7,13 +7,11 @@ require('express-async-errors');
 const config = require('config');
 
 module.exports = function(app) {
-    /*
     winston.handleExceptions(
         
         new winston.transports.Console({colorize: true, prettyPrint: true}),
         new winston.transports.File({ filename: 'logfile.log'})
     );
-    */
 
     process.on("uncaughtException", (ex) => {
         console.log(ex.message, ex);
@@ -27,11 +25,12 @@ module.exports = function(app) {
         filename: './logfile.log' 
     });
 
+    /*
     winston.add(winston.transports.MongoDB, { 
         db: config.get('database'),
         level: 'info' 
     });
-    
+    */
     /*
     if (app.get('env') === 'development') {
         app.use(morgan('tiny'));
@@ -39,7 +38,4 @@ module.exports = function(app) {
     }
     debugDB("Connected to MongoDB");
     */
-    
-    
-    
 }

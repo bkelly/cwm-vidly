@@ -1,5 +1,6 @@
 {
     "name": "Vidly - DEVELOPMENT",
+    "database": "mongodb://localhost/vidly_dev",
     "jwtPrivateKey": "vidly_jwtPrivateKey",
     "mail": {
         "host": "dev-mail-server"
