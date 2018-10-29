@@ -12,11 +12,10 @@ const router = express.Router();
 Fawn.init(mongoose);
 //Routes for Rentals
 
-//Get all movies
+//Get all Rentals
 router.get('/', async (req, res) => {
     const rentals = await Rental.find().sort('-rentalStartDate')
     .populate('movie', 'title -_id')
-//    .select('title genre');
     res.send(rentals);
 });
 
@@ -70,27 +69,6 @@ router.post('/', auth, async (req, res) => {
     }
 });
 
-//Update a Rental
-router.put('/:id', auth, async (req, res) => {
-    const {error} = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-//    try {
-        const rental = await Rental.findByIdAndUpdate(req.params.id, { title: req.body.title }, { new: true });
-//    } catch(err) {
-        if (!rental) return res.status(404).send(`Rental with id ${req.params.id} was not found`);
-//    }
-    res.send(rental);
-});
-
-//Delete a Rental
-router.delete('/:id', auth, async (req, res) => {
-//    try{
-        const rental = await Rental.findByIdAndDelete(req.params.id);
-//    } catch(err) {
-        if (!rental) return res.status(404).send(`Rental with id ${req.params.id} was not found`);
-//    }
-    res.send(rental);
-});
 
 
 module.exports = router;
