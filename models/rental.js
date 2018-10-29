@@ -14,14 +14,15 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
         type: customerSchema,
         required: true,
     },
-    rentalStartDate: {
+    startDate: {
         type: Date,
         required: true,
         default: Date.now
     },
-    rentalReturnDate: {
+    returnDate: {
         type: Date
-    }
+    },
+    rentalFee: Number
 }));
 
 

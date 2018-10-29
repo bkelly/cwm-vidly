@@ -11,7 +11,7 @@ describe('auth middleware', () => {
     });
     afterEach(async () => { 
         await Genre.remove({});
-        server.close(); });
+        await server.close(); });
    
     const exec = () => {
         //Returns a promise - remember to await it where you call it
