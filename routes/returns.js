@@ -11,8 +11,8 @@ router.get('/api/returns', (req, res) => {
 })
 
 router.post('/api/returns', auth, async (req, res) => {
-    if(!req.body.customerId) return res.status(400).send('CustomerId not provided');
-    if(!req.body.movieId) return res.status(400).send('MovieId not provided');
+    const {error} = validateReturn(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
     
     const rental = await Rental.findOne({
         'customer._id': req.body.customerId,
