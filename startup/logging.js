@@ -1,5 +1,5 @@
 const winston = require('winston');
-//require('winston-mongodb');
+require('winston-mongodb');
 require('express-async-errors');
 //const debugStartup = require('debug')('app:startup');
 //const debugDB = require('debug')('app:db');
@@ -25,12 +25,12 @@ module.exports = function(app) {
         filename: './logfile.log' 
     });
 
-    /*
+    
     winston.add(winston.transports.MongoDB, { 
         db: config.get('database'),
         level: 'info' 
     });
-    */
+    
     /*
     if (app.get('env') === 'development') {
         app.use(morgan('tiny'));
