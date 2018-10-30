@@ -2,6 +2,7 @@ const moment = require('moment');
 const request = require('supertest');
 const {Rental} = require('../../models/rental');
 const {User} = require('../../models/user');
+const {Movie} = require('../../models/movie');
 const mongoose = require('mongoose');
 
 
