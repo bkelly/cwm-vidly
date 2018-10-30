@@ -1,5 +1,5 @@
-node_modules
-coverage
+node_modules/
+coverage/
 .vscode
 logfile.log
 package-lock.json
