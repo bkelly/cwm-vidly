@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --runInBand --verbose --coverage",
+    "test": "jest --runInBand --watchAll --verbose --coverage",
     "start": "node index.js"
   },
   "engines": {

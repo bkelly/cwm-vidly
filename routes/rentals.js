@@ -4,7 +4,6 @@ const {Movie} = require('../models/movie');
 const {Customer} = require('../models/customer');
 const mongoose = require('mongoose');
 const express = require('express');
-const Joi = require('joi');
 const Fawn = require('fawn');
 const router = express.Router();
 
@@ -36,11 +35,11 @@ router.post('/', auth, async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
     //TODO - Aggregate error messages into a function
 
-    const movie = await Movie.findById(req.body.movieID);
+    const movie = await Movie.findById(req.body.movieId);
     if (!movie) return res.status(400).send('Movie not found');
     if (movie.numberInStock === 0) return res.status(400).send('No stock available');
 
-    const customer = await Customer.findById(req.body.customerID);
+    const customer = await Customer.findById(req.body.customerId);
     if (!customer) return res.status(400).send('Customer not found');
 
     let rental = new Rental({ 
