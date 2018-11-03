@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand --watchAll --verbose --coverage",
+    "testLocal": "jest --runInBand --watchAll --verbose --coverage",
+    "test": "jest --verbose --detectOpenHandles",
     "start": "node index.js"
   },
   "engines": {
