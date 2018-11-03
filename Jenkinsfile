@@ -7,6 +7,8 @@ pipeline {
     }
     environment {
         CI = 'true'
+        AWS_ACCESS_KEY_ID = "${env.AWS_ACCESS_KEY_ID}"
+        AWS_SECRET_ACCESS_KEY = "${env.AWS_SECRET_ACCESS_KEY}"
     }
     stages {
         stage('Build') {
@@ -16,8 +18,18 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm test'
+                echo 'here\'s where we\'d run npm test'
             }
+        }
+    }
+    post {
+        success {
+            sh 'touch index3.html'
+            withAWS(region: 'us-east-1') {
+                //uploading a single file for now. 
+                s3Upload(file:'index3.html', bucket:'bk-web-test2', path:'index3.html')
+            }
+            build 'deployHeroku'
         }
     }
 }
