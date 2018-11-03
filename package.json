@@ -37,6 +37,7 @@
     "winston-mongodb": "^3.0.1"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "jest": "^23.6.0",
     "supertest": "^3.3.0"
   }
