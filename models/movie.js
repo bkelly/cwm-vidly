@@ -29,10 +29,10 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model('Movie', movieSchema);
 
 
-async function createMovie(title, genreID) {
+async function createMovie(title, genreId) {
     const movie = new Movie({
         title,
-        genreID
+        genreId
     });
     const result = await movie.save();
     console.log(result);
@@ -42,7 +42,7 @@ async function createMovie(title, genreID) {
 function validateMovies(movie) {
     const schema = {
         title: Joi.string().min(3).max(280).required(),
-        genreID: Joi.objectId().required(),
+        genreId: Joi.objectId().required(),
         numberInStock: Joi.number().min(0).required(),
         dailyRentalRate: Joi.number().min(0).required()
     };
