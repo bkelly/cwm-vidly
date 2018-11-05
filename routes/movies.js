@@ -10,7 +10,7 @@ const router = express.Router();
 //Get all movies
 router.get('/', async (req, res) => {
     const movies = await Movie.find()
-    .populate('genre', 'name -_id')
+//    .populate('genre', 'name -_id')
     .select('title genre');
     res.send(movies);
 });
@@ -18,11 +18,8 @@ router.get('/', async (req, res) => {
 
 //Get single Movie
 router.get('/:id', async (req, res) => {
-//    try {
         const movie = await Movie.findById(req.params.id);
-//    } catch(err) {
         if (!movie) return res.status(404).send('Error: Movie not found');
-//    }
     res.send(movie);
 });
 
@@ -30,9 +27,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', auth, async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
- //TODO - Aggregate error messages into a function
+ console.log("LOOKING UP GENRE: ", req.body.genreId);
     const genre = await Genre.findById(req.body.genreId);
-    if(!genre) return res.status(400).send('Invalid Genre');
+console.log("Genre returned: ", genre);
+    if(!genre) return res.status(400).send('Invalid Genre.');
 
     const movie = new Movie({
         title: req.body.title,
