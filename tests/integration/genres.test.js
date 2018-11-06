@@ -91,7 +91,6 @@ describe('/api/genres', () => {
 
         it('should return the genre if it is valid', async () => {
             const res = await exec();
-        console.log('res.body: ', res.body);
             expect(res.body).toHaveProperty('_id');
             expect(res.body).toHaveProperty('name', name);
         });
