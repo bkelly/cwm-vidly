@@ -45,9 +45,13 @@ describe('/api/returns', () => {
     });
 
     afterEach(async () => { 
-        await server.close();
-        await Rental.remove({});
-        await Movie.remove({});
+        try{
+            await server.close();
+            await Rental.remove({});
+            await Movie.remove({});    
+        } catch(err) {
+            console.log("ERROR: ", err.message)
+        }
     });
 
     describe('POST /', () => {
@@ -107,25 +111,27 @@ describe('/api/returns', () => {
 
         it('should set return date for valid request', async () => {
             const res = await exec();
-            expect(res.body.returnDate).toBeCloseTo(Date.now());
+
+            const rentalInDBb = await Rental.findById(rental._id);
+            const diff = new Date() - rentalInDBb.returnDate;
+            expect(diff).toBeLessThan(10 * 1000); //ten seconds
         });
-    /*   
     
         it('should calculate rental fee for valid request', async () => {
             rental.startDate = moment().add(-7, 'days').toDate();
             await rental.save();
 
             const res = await exec();
-            const rentalInDb = Rental.findById(rental._id);
+            const rentalInDb = await Rental.findById(rental._id);
+
             expect(rentalInDb.rentalFee).toBe(35);
         });
     
         it('should increase movie stock upon successful return', async () => {
             const res = await exec();
-            movieInDb = Movie.findById(movieId);
+            movieInDb = await Movie.findById(movieId);
             expect(movieInDb.numberInStock).toBe(movie.numberInStock + 1);
         }); 
   
-*/
     });
 });
