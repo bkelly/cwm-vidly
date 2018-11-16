@@ -14,7 +14,7 @@ Fawn.init(mongoose);
 //Get all Rentals
 router.get('/', async (req, res) => {
     const rentals = await Rental.find().sort('-rentalStartDate')
-    .populate('movie', 'title -_id')
+//    .populate('movie', 'title -_id')
     res.send(rentals);
 });
 

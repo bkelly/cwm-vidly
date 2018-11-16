@@ -2,16 +2,35 @@ const {Genre} = require('../../models/genre');
 const {User} = require('../../models/user');
 const request = require('supertest');
 
+
+//server = require('../../index');
+
 describe('auth middleware', () => {
     let token;
+    let server;
 
+    beforeAll(async () => {
+        server = await require('../test_index'); 
+    });
+
+    afterAll(async () => { 
+        if (server) { 
+            await server.close(); 
+        }
+    });
+    
     beforeEach(() => { 
-        server = require('../../index');
         token = new User().generateAuthToken();
     });
     afterEach(async () => { 
-        await Genre.remove({});
-        await server.close(); });
+        try{
+            await Genre.remove({});
+            await server.close();     
+        } catch(err) {
+            console.log("ERROR: ", err.message);
+        }
+    });
+
    
     const exec = () => {
         //Returns a promise - remember to await it where you call it

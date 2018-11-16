@@ -36,7 +36,7 @@ rentalSchema.statics.lookup = function(customerId, movieId) {
 rentalSchema.methods.return = function() {
     this.returnDate = new Date();
 
-    const rentalDays = moment().diff(this.dateOut, 'days');
+    const rentalDays = moment().diff(this.startDate, 'days');
     this.rentalFee = rentalDays * this.movie.dailyRentalRate;
 };
 

@@ -13,9 +13,18 @@ describe('/api/returns', () => {
     let movieId;
     let rental;
 
+    beforeAll(async () => {
+        server = await require('../test_index'); 
+        port = server.address().port 
+    });
+
+    afterAll(async () => {
+        if(server) {
+            await server.close();
+        }
+    });
+
     beforeEach(async () => { 
-        server = require('../../index');  
-        
         customerId = mongoose.Types.ObjectId();
         movieId = mongoose.Types.ObjectId();
 
@@ -46,11 +55,12 @@ describe('/api/returns', () => {
 
     afterEach(async () => { 
         try{
-            await server.close();
             await Rental.remove({});
             await Movie.remove({});    
         } catch(err) {
-            console.log("ERROR: ", err.message)
+            console.log("ERROR after test: ", err.message);
+            winston.info("Error after test: ", error.message);
+
         }
     });
 
