@@ -3,7 +3,6 @@ pipeline {
         dockerfile {
             args '-p 3000:3000'
             dir 'build'
-            additionalBuildArgs "--build-arg NODE_ENV='development' --build-arg vidly_db=${env.VIDLY_DB}"
         }
     }
     environment {
