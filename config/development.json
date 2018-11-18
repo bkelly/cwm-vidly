@@ -1,5 +1,5 @@
 {
     "name": "Vidly - DEVELOPMENT",
-    "database": "mongodb://localhost/vidly",
+    "database": "vidly_db",
     "jwtPrivateKey": "vidly_jwtPrivateKey"
 }
