@@ -22,7 +22,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'set_env.sh'
                 sh 'npm test'
             }
         }
