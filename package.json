@@ -1,8 +1,12 @@
 {
   "name": "vidly",
   "version": "1.0.0",
-  "description": "",
+  "description": "Vidly - (from 'code with mosh' nodeJS tutorial)",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bkelly/cwm-vidly"
+  },
   "scripts": {
     "testLocal": "jest --runInBand --watchAll --verbose --coverage",
     "test": "jest --verbose --detectOpenHandles",

@@ -1,14 +1,18 @@
 pipeline {
     agent {
-        docker {
-            image 'node:8.11.4'
+        dockerfile {
             args '-p 3000:3000'
+            dir 'build'
+            additionalBuildArgs "--build-arg NODE_ENV='development' --build-arg vidly_db=${env.VIDLY_DB}"
         }
     }
     environment {
         CI = 'true'
         AWS_ACCESS_KEY_ID = "${env.AWS_ACCESS_KEY_ID}"
         AWS_SECRET_ACCESS_KEY = "${env.AWS_SECRET_ACCESS_KEY}"
+        NODE_ENV = "development"
+        vidly_db = ""
+        vidly_jwtPrivateKey = "derp"
     }
     stages {
         stage('Build') {
@@ -18,6 +22,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'set_env.sh'
                 sh 'npm test'
             }
         }
